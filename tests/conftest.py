@@ -10,12 +10,24 @@ def test_bun():
     return Bun(*BurgerTestData.BUNS["default"])
 
 @pytest.fixture
+def another_test_bun():
+    return Bun(*BurgerTestData.BUNS["second"])
+
+@pytest.fixture
 def test_sauce_ingredient():
     return Ingredient(*BurgerTestData.INGREDIENTS["sauce"])
 
 @pytest.fixture
 def test_filling():
     return Ingredient(*BurgerTestData.INGREDIENTS["filling"])
+
+@pytest.fixture
+def move_ingredient_1():
+    return Ingredient(*BurgerTestData.INGREDIENTS["move1"])
+
+@pytest.fixture
+def move_ingredient_2():
+    return Ingredient(*BurgerTestData.INGREDIENTS["move2"])
 
 @pytest.fixture
 def test_burger(test_bun, test_sauce_ingredient, test_filling):
