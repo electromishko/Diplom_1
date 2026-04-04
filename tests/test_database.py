@@ -1,12 +1,7 @@
 from praktikum.database import Database
 from praktikum.bun import Bun
 from praktikum.ingredient import Ingredient
-from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
-
-
-class IngredientTypes:
-    SAUCE = INGREDIENT_TYPE_SAUCE
-    FILLING = INGREDIENT_TYPE_FILLING
+from tests.test_data import IngredientTypes
 
 
 class TestDatabase:

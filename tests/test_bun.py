@@ -4,39 +4,44 @@ from praktikum.bun import Bun
 
 class TestBun:
 
-    @pytest.mark.parametrize("name, price", 
-        [
-        ("black bun", 100),
-        ("white bun", 200),
-        ("red bun", 300),
-        ("", 0),
-        ])
+    @pytest.mark.parametrize("name", [
+        "black bun",
+        "кирилическая булочка", 
+        "",
+        "123bun",
+        "bun!@#$%",
+        "a" * 100,
+    ])
+    def test_get_name_returns_correct_name(self, name):
+        bun = Bun(name, 100)
+        assert bun.get_name() == name
 
-    def test_bun_creation(self, name, price):
+
+    @pytest.mark.parametrize("price", [
+        0,
+        100,
+        299.99,
+        -100,
+    ])
+    def test_get_price_return_correct_price(self, price):
+        bun = Bun("test bun", price)
+        assert bun.get_price() == price
+
+    @pytest.mark.parametrize("name, price", [
+        ("black bun", 100),
+        ("", 0),
+        ("red bun", 99.99),
+        ("", -50),
+    ])
+    def test_bun_creation_set_attributes_correct(self, name, price):
         bun = Bun(name, price)
         assert bun.name == name
         assert bun.price == price
 
-    @pytest.mark.parametrize("name,price,expected_name",
-        [
-        ("black bun", 100, "black bun"),
-        ("white bun", 200, "white bun"),
-        ("red bun", 300, "red bun"),
-        ("", 100, ""),
-        ])
+    def test_get_name_returs_attribute_name(self):
+        bun = Bun("test bun", 100)
+        assert bun.get_name() == bun.name
 
-    def test_get_name(self, name, price, expected_name):
-        bun = Bun(name, price)
-        assert bun.get_name() == expected_name
-
-    @pytest.mark.parametrize("name,price,expected_price",
-        [
-        ("black bun", 100, 100),
-        ("white bun", 200, 200),
-        ("red bun", 300, 300),
-        ("negative price", -100, -100),
-        ])
-
-    def test_get_price(self, name, price, expected_price):
-        bun = Bun(name, price)
-        assert bun.get_price() == expected_price
+    def test_get_price_returs_attribute_price(self):
+        bun = Bun("test bun", 100)
+        assert bun.get_price() == bun.price
